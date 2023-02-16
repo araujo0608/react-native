@@ -14,28 +14,32 @@ const [textButton, setTextButton] = useState("Calcular");
 const [imcCategory, setImcCategory] = useState(null)
 
 function imcCalculator(){
-    return setImc((weight / (height * height)).toFixed(2))
-}
+    const result = (weight / (height * height)).toFixed(2)
+    setImc(result)
 
-function validationCategory(){
-    var category = ''
-    console.log(Number(imc))
-    if (Number(imc) < 18.5){
+    let category = ''
+    
+    if (Number(result) < 18.5){
         category = String('abaixo do peso')
-    } else if(Number(imc) < 25){
+    } else if(Number(result) < 25){
         category = String('normal')
-    } else if(Number(imc) < 30){
+    } else if(Number(result) < 30){
         category = String('sobrepeso')
     } else {
         category = String('Obesidade')
     }
-    return setImcCategory(category)
+
+    setImcCategory(category)
+
+    console.log(`imc: ${result}`)
+    console.log(`categoria: ${category}`)
+    return 
 }
+
 
 function validationImc(){
     if (height != null && weight != null){ // Se peso e altura estiverem com dados
         imcCalculator();
-        validationCategory();
         setHeight(null);
         setWeight(null);
         setMessageIcm(`Seu IMC é igual a: `);
@@ -46,6 +50,7 @@ function validationImc(){
         setImc(null);
         setTextButton("Calcular");
         setMessageIcm("Preencha o peso e a altura!")
+        setImcCategory(null)
     }
 }
 

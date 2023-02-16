@@ -20,6 +20,13 @@ const styles = StyleSheet.create({
         fontSize: 48,
         color: '#ff0043',
         fontWeight: 'bold'
+    },
+    
+    categoryImc:{
+        fontSize: 18,
+        color: '#048444',
+        fontStyle:'italic',
+        fontWeight: 'bold'
     }
 
 });

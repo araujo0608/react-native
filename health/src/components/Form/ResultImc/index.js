@@ -7,7 +7,7 @@ export default function ResultImc(props){
         <View style={styles.imcContext}>
             <Text style={styles.msgImc}>{props.messageResultImc}</Text>
             <Text style={styles.resImc}>{props.resultImc}</Text>
-            <Text>{props.resCategory}</Text>
+            <Text style={styles.categoryImc}>{props.resCategory}</Text>
         </View>
     );
 }
