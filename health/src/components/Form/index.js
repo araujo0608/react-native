@@ -1,20 +1,26 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, TouchableOpacity} from "react-native";
+import { View, TextInput, Text, TouchableOpacity, Vibration, Pressable, Keyboard} from "react-native";
 import ResultImc from './ResultImc';
 import styles from "./style";
 
 export default function Form(){
     
-// Estados
-const [height, setHeight] = useState(null); // por padrão vai ser nulo
+// States
+const [height, setHeight] = useState(null); // null by default
 const [weight, setWeight] = useState(null);
 const [messageImc, setMessageIcm] = useState("Preencha o peso e a altura");
 const [imc, setImc] = useState(null);
 const [textButton, setTextButton] = useState("Calcular");
-const [imcCategory, setImcCategory] = useState(null)
+const [imcCategory, setImcCategory] = useState(null);
+const [errorMessage, setErrorMessage] = React.useState(null);
+
 
 function imcCalculator(){
-    const result = (weight / (height * height)).toFixed(2)
+    let heightFormat = String(height.replace(",", ".")) // changing , by .
+    let weightFormat = String(weight.replace(",", ".")) // changing , by .
+    heightFormat = Number(heightFormat)
+    weightFormat = Number (weightFormat)
+    const result = (weightFormat / (heightFormat * heightFormat)).toFixed(2)
     setImc(result)
 
     let category = ''
@@ -30,9 +36,6 @@ function imcCalculator(){
     }
 
     setImcCategory(category)
-
-    console.log(`imc: ${result}`)
-    console.log(`categoria: ${category}`)
     return 
 }
 
@@ -42,6 +45,7 @@ function validationImc(){
         imcCalculator();
         setHeight(null);
         setWeight(null);
+        setErrorMessage(null);
         setMessageIcm(`Seu IMC é igual a: `);
         setTextButton(`Calcular novamente`);
         return 
@@ -49,19 +53,23 @@ function validationImc(){
     else{
         setImc(null);
         setTextButton("Calcular");
-        setMessageIcm("Preencha o peso e a altura!")
-        setImcCategory(null)
+        setMessageIcm("Preencha o peso e a altura!");
+        setErrorMessage("campo obrigatório*")
+        setImcCategory(null);
+        Vibration.vibrate(); // faz o telefone vibrar
     }
 }
 
     return(
-        <View style={styles.formContext}>
+        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
             <View style={styles.form}>
                 <Text style={styles.formLabel}>Altura</Text>
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
                 <TextInput placeholder="Ex: 1.75" keyboardType="numeric" onChangeText={setHeight}
                 value={height} style={styles.formInput}/>
 
                 <Text style={styles.formLabel}>Peso</Text>
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
                 <TextInput
                 placeholder="Ex: 82.1"
                 keyboardType="numeric"
@@ -77,6 +85,6 @@ function validationImc(){
 
             <ResultImc messageResultImc={messageImc} resultImc={imc} resCategory={imcCategory}/>
 
-        </View>
+        </Pressable>
     );
 }
