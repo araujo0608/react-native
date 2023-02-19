@@ -12,7 +12,7 @@ const [messageImc, setMessageIcm] = useState("Preencha o peso e a altura");
 const [imc, setImc] = useState(null);
 const [textButton, setTextButton] = useState("Calcular");
 const [imcCategory, setImcCategory] = useState(null);
-const [errorMessage, setErrorMessage] = React.useState(null);
+const [errorMessage, setErrorMessage] = React.useState(null); 
 
 
 function imcCalculator(){
