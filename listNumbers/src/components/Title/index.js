@@ -22,9 +22,8 @@ const styles = StyleSheet.create({
     },
 
     titleText:{
-        fontFamily: 'system-ui',
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#21453A'
+        color: '#000000'
     }
 });
