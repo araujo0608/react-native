@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import Title from './src/components/Title'; // Importando componente criado
 import Form from './src/components/Form';
 
-export default function App() {
+export default function App(){
   return (
     <View style={styles.container}>
       <Title/>
