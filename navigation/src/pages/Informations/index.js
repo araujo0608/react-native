@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, Text} from 'react-native';
 
-const Informations = (props) => {
+const Informations = ({ route }) => {
     return(
-      <View>
-        <Button
-          title='go to Contacts page'
-          onPress={() => props.navigation.navigate("Contacts")}
-        />
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Nome: {route.params.nome}</Text>
+        <Text>Telefone: {route.params.telefone}</Text>
+        <Text>Endereço: {route.params.endereco}</Text>
+        <Text>Profissão: {route.params.profissao}</Text>
+        <Text>Email: {route.params.email}</Text>
       </View>
     )
 }
