@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Button } from 'react-native';
 
-const Informations = () => {
+const Informations = (props) => {
     return(
       <View>
-        <Text>Information Page</Text>
+        <Button
+          title='go to Contacts page'
+          onPress={() => props.navigation.navigate("Contacts")}
+        />
       </View>
     )
 }
