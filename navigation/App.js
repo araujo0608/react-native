@@ -1,22 +1,21 @@
-import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigation } from '@react-navigation/native-stack';
+//import { StyleSheet, Text, View } from 'react-native';
+import Contacts from './src/pages/Contacts/';
+import Informations from './src/pages/Informations/';
+//import styles from './style'
 
+
+const Stack = createStackNavigation();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Contacts" component={Contacts}/>
+        <Stack.Screen name="Informations" component={Informations}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
